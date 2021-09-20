@@ -62,8 +62,19 @@ func moveZeroes4(nums []int) {
 	}
 }
 
+func moveZeroes5(nums []int) {
+	j := 0
+	for i:=0;i<len(nums);i++ {
+		if nums[i] ==0 {
+			continue
+		}
+		nums[i], nums[j] = nums[j], nums[i]
+		j++
+	}
+}
+
 func main() {
 	nums := []int{0, 1, 0, 3, 12}
-	moveZeroes4(nums)
+	moveZeroes5(nums)
 	fmt.Println(nums)
 }
