@@ -47,6 +47,43 @@ func maxArea2(height []int) int {
 	return max
 }
 
+// 这种实现虽然可以得到结果，但是复杂度已经不能通过 leetcode 的测试
+func maxArea3(height []int) int {
+	max := 0
+	for i:=0;i<len(height);i++ {
+		for j:=i+1;j<len(height);j++ {
+			res := 0
+			if height[i] > height[j] {
+				res = (j-i)*height[j]
+			} else {
+				res = (j-i)*height[i]
+			}
+			if res > max {
+				max = res
+			}
+		}
+	}
+	return max
+}
+
+func maxArea4(height []int) int {
+	max := 0
+	for i,j := 0, len(height) -1; i!=j; {
+		res := 0
+		if height[i] > height[j] {
+			res = height[j] * (j-i)
+			j--
+		} else {
+			res = height[i] * (j-i)
+			i++
+		}
+		if res > max {
+			max = res
+		}
+	}
+	return max
+}
+
 func main() {
 	height := []int{1, 8, 6, 2, 5, 4, 8, 3, 7}
 	res := maxArea2(height)
